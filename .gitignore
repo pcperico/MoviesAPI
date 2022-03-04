@@ -1,0 +1,13 @@
+bin
+packages
+obj
+*.suo
+*.user
+Package
+MoviesAPI/.vs/config/applicationhost.config
+MoviesAPI/.vs/MoviesAPI/v15/Server/sqlite3
+MoviesAPI/.vs/MoviesAPI/v16/Server/sqlite3
+MoviesAPI/.vs/MoviesAPI/config/applicationhost.config
+MoviesAPI/.vs/MoviesAPI/DesignTimeBuild/.dtbcache.v2
+.vs/MoviesAPI/config/applicationhost.config
+.vs/MoviesAPI/DesignTimeBuild/.dtbcache.v2
