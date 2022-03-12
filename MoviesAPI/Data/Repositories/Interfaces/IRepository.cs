@@ -8,6 +8,6 @@ namespace MoviesAPI.Data.Repositories.Interfaces
         IEnumerable<T> GetAll();
         void Insert(T obj);
         void Update(T obj);
-        void Delete(int id);
+        bool Delete(int id);
     }
 }

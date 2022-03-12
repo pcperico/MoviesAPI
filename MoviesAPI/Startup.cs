@@ -13,6 +13,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoviesAPI.Data;
+using MoviesAPI.Data.Repositories.Implementations;
+using MoviesAPI.Data.Repositories.Interfaces;
+using MoviesAPI.Services.Interfaces;
+using MoviesAPI.Services.Implementations;
 
 namespace MoviesAPI
 {
@@ -35,6 +39,10 @@ namespace MoviesAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesAPI", Version = "v1" });
             });
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IGenderRepository), typeof(GenderRepository));
+            services.AddScoped(typeof(IGenderService), typeof(GenderService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

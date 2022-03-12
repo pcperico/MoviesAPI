@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MoviesAPI.Data.Repositories.Interfaces;
@@ -33,18 +34,18 @@ namespace MoviesAPI.Data.Repositories.Implementations
 
         public void Update(T obj)
         {
-            entity.Update(obj);
+            entity.Attach(obj);
+            _context.Entry(obj).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var exitingObj = Get(id);
-            if (exitingObj != null)
-            {
-                entity.Remove(exitingObj);
-                _context.SaveChanges();
-            }
+            if (exitingObj == null) return false;
+            entity.Remove(exitingObj);
+            _context.SaveChanges();
+            return true;
         }
     }
 }
