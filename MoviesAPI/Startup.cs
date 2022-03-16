@@ -35,6 +35,14 @@ namespace MoviesAPI
 
             services.AddControllers();
             services.AddDbContext<MoviesContext>(item => item.UseSqlServer(Configuration.GetConnectionString("moviesConn")));
+            services.AddCors(options =>
+            {
+                var frontEndUrl = Configuration.GetValue<string>("frontend_url");
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins(frontEndUrl).AllowAnyMethod().AllowAnyHeader();
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesAPI", Version = "v1" });
@@ -58,6 +66,8 @@ namespace MoviesAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
